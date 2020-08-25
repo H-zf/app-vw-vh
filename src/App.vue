@@ -1,11 +1,22 @@
 <template>
-    <div class="demo">
-        这是我的第一个移动端项目
+    <div id="app">
+        <router-view></router-view>
     </div>
 </template>
 
 <style>
-    .demo {
-        font-size: 24px;
-    }
+html,body,#app{
+    width: 100%;
+    height: 100%;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    font-size: 18px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+::-webkit-scrollbar{
+  width: 0;
+}
 </style>
