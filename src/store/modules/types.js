@@ -1,0 +1,1 @@
+export const SET_LOADING_BOOL = 'SET_LOADING_BOOL'

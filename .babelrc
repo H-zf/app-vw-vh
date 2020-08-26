@@ -8,5 +8,13 @@
                 }
             }
         ]
+    ],
+    "plugins": [
+        ["import", {
+            "libraryName": "vant",
+            "libraryDirectory": "es",
+            "style": true
+        }],
+        "transform-object-rest-spread"
     ]
 }
