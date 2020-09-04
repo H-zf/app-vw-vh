@@ -1,6 +1,8 @@
 <template>
     <div id="app">
-        <router-view></router-view>
+        <transition :name="transitionName">
+            <router-view></router-view>
+        </transition>
         <van-loading color="#1989fa" v-if="loadingMask"/>
     </div>
 </template>
@@ -9,7 +11,7 @@
     export default {
         data(){
             return {
-
+                transitionName:''
             }
         },
         computed: {
@@ -19,6 +21,20 @@
             // loadingMask(){
             //     return this.$store.state.HomeModules.loadingBool
             // }
+        },
+        watch:{
+            $route(to, from) {
+            //如果to索引大于from索引,判断为前进状态,反之则为后退状态
+            let isBack = this.$router.isBack
+                console.log(isBack);
+                if(isBack){
+                //设置动画名称
+                this.transitionName = 'slide-right';
+                }else{
+                this.transitionName = 'slide-left';
+                }
+                this.$router.isBack = false;
+            }
         }
     }
 </script>
@@ -36,5 +52,29 @@ html,body,#app{
 }
 ::-webkit-scrollbar{
   width: 0;
+}
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  will-change: transform;
+  transition: all 500ms;
+  position: absolute;
+}
+.slide-right-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-leave-active {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
 }
 </style>
