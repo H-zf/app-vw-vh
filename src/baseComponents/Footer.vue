@@ -3,13 +3,14 @@
         <van-tabbar v-model="active" @change="toggleView">
             <van-tabbar-item icon="home-o">首页</van-tabbar-item>
             <van-tabbar-item icon="search" dot>详情</van-tabbar-item>
-            <van-tabbar-item icon="friends-o" badge="5">购物车</van-tabbar-item>
+            <van-tabbar-item icon="friends-o" :badge="sumqutity">购物车</van-tabbar-item>
             <van-tabbar-item icon="setting-o" badge="20">个人</van-tabbar-item>
         </van-tabbar>
     </div>
 </template>
 
 <script>
+import { mapState, mapGetters} from 'vuex'
 export default {
     data(){
         return {
@@ -21,6 +22,14 @@ export default {
                 3:this.personalToggle
             }
         }
+    },
+    computed:{
+        ...mapState({
+            carqutity:(state) => state.CarData.quetity
+        }),
+        ...mapGetters({
+            sumqutity:'sumqutity'
+        })
     },
     methods: {
         toggleView(active){
